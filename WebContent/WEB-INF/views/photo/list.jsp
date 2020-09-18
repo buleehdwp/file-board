@@ -51,6 +51,7 @@
 			</c:if>
 		</table>
 		<button>삭제</button>
+		<a href="/photo/update"><button type="button">수정</button></a>
 	</form>
 	<br>	
 	<c:forEach begin="${page.startBlock}" end="${page.endBlock}" var="idx">
@@ -58,6 +59,7 @@
 	</c:forEach>
 	<a href="/photo/list?page.pageNum=${page.pageNum+1}">▶</a>
 	<a href="/photo/write"><button>글쓰기</button></a>
+	
 </div>
 <img src="" style="display:none" id="sImg">
 <script>
@@ -74,6 +76,7 @@ function allCheck(obj){
 		chkObjs[i].checked = obj.checked;
 	}
 }
+
 </script>
 </body>
 </html>

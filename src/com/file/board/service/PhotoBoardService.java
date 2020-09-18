@@ -12,6 +12,7 @@ public interface PhotoBoardService {
 	int insertPhotoBoard(MultipartFile file, PhotoBoardVO pb);
 	List<PhotoBoardVO> selectPhotoBoardList(PhotoBoardVO pb, Model model);
 	int deletePhotoBoards(int[] pbNums);
+	PhotoBoardVO selectPhotoBoard(PhotoBoardVO pb, Model model);
 }
 
 

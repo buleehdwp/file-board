@@ -12,4 +12,5 @@ public interface PhotoBoardDAO {
 	int selectPhotoBoardCount(PhotoBoardVO pb);
 	int deletePhotoBoards(int[] pbNums);
 	List<PhotoBoardVO> selectPhotoBoardsForDelete(int[] pbNums);
+	PhotoBoardVO selectPhotoBoard(PhotoBoardVO pb);
 }

@@ -56,5 +56,11 @@ public class PhotoBoardDAOImpl implements PhotoBoardDAO {
 		try(SqlSession ss = ssf.openSession()){
 			return ss.selectList("PhotoBoard.selectPhotoBoardsForDelete",pbNums);
 		}
+	}
+
+	public PhotoBoardVO selectPhotoBoard(PhotoBoardVO pb) {
+		try(SqlSession ss = ssf.openSession()){
+			return ss.selectOne("selectPhotoBoard",pb);
+		}
 	}	
 }

@@ -64,6 +64,9 @@
 		delete from photo_board
 		where pb_num = ${pb_num}
 	</delete>
+	<select id="selectPhotoBoard" resultType="pb">
+		select * from photo_board where pb_num=#{pbNum}
+	</select>
 </mapper>
 
 

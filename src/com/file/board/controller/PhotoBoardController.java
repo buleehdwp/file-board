@@ -1,5 +1,7 @@
 package com.file.board.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +23,7 @@ public class PhotoBoardController {
 
 	@RequestMapping(value="/photo/list",method=RequestMethod.GET)
 	public String goList(@ModelAttribute PhotoBoardVO pb,Model model) {
-		System.out.println(pb);
+//		System.out.println(pb);
 		pbService.selectPhotoBoardList(pb,model);
 		return "photo/list";
 	}
@@ -41,5 +43,10 @@ public class PhotoBoardController {
 	public String doWrite(@RequestParam("pbFile") MultipartFile file,@ModelAttribute PhotoBoardVO pb) {
 		pbService.insertPhotoBoard(file, pb);
 		return "redirect:/photo/list";
+	}
+	@RequestMapping(value="/photo/update", method=RequestMethod.GET)
+	public String doUpdate(@ModelAttribute PhotoBoardVO pb,Model model) {
+		pbService.selectPhotoBoard(pb, model);
+		return "/photo/update";
 	}
 }

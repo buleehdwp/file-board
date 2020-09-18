@@ -17,7 +17,7 @@ import com.file.board.vo.PhotoBoardVO;
 @Service
 public class PhotoBoardServiceImpl implements PhotoBoardService {
 
-	private final String uploadPath = "C:\\java_study\\workspace\\file-board\\WebContent\\resources\\";
+	private final String uploadPath = "C:\\Users\\Administrator\\git\\board\\WebContent\\resources\\";
 	@Autowired
 	private PhotoBoardDAO pbdao;
 	@Override
@@ -44,6 +44,10 @@ public class PhotoBoardServiceImpl implements PhotoBoardService {
 	@Override
 	public List<PhotoBoardVO> selectPhotoBoardList(PhotoBoardVO pb,Model model) {
 		PageVO page = pb.getPage();
+		if(page == null) {
+			page = new PageVO();
+			page.setPageNum(1);
+		}
 		int startNum = (page.getPageNum()-1) * 10 + 1;
 		int endNum = startNum + (10-1);
 		page.setStartNum(startNum);
@@ -65,7 +69,23 @@ public class PhotoBoardServiceImpl implements PhotoBoardService {
 	}
 	@Override
 	public int deletePhotoBoards(int[] pbNums) {
+		List<PhotoBoardVO> pbList = pbdao.selectPhotoBoardsForDelete(pbNums);
+		if(!pbList.isEmpty()) {
+			for(PhotoBoardVO pb : pbList) {
+				String fileName = pb.getPbPhotoPath();
+				File f = new File(uploadPath + fileName);
+				if(f.exists()) {
+					f.delete();
+				}
+			}
+		}
 		return pbdao.deletePhotoBoards(pbNums);
 	}
+	public PhotoBoardVO selectPhotoBoard(PhotoBoardVO pb, Model model) {
+		model.addAttribute("selectPb", pb);
+		return null;
+	}
+
+
 
 }
